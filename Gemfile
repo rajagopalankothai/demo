@@ -42,10 +42,17 @@ gem 'devise', '~> 4.5.0'
 gem 'gravatar_image_tag', '~> 1.2'
 gem 'carrierwave'
 gem 'mini_magick'
-gem 'pundit'
-gem 'filterrific'
+gem 'cancancan'
+#gem 'filterrific'
 gem 'stripe'
 gem 'sidekiq'
+#gem 'pdfkit'
+#gem 'render_anywhere', :require => false
+gem 'invoicing'
+#gem 'pdf-reader'
+#gem 'remotipart', github: 'mshibuya/remotipart'
+#gem 'rails_admin', github: 'sferik/rails_admin'
+#gem 'rails_admin_rollincode', '~> 1.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -1,20 +1,59 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
 
   # GET /products
   # GET /products.json
   def index
-    @products = Product.all
+      @products = Product.all.order("created_at desc") 
+
   end
+
+    def search
+      if params[:search].blank?  
+        redirect_to(root_path, alert: "Empty field!") and return  
+      else
+        @parameter = params[:search].downcase  
+        @results = Product.all.where("lower(name) LIKE :search", search: "%#{@parameter}%")
+      end
+    end
+
+ def approve
+    @users = User.where(approved: nil)
+  end
+  
+  def await
+  @user = User.find(params[:user])
+  if @user.update(approved: true)
+    render
+  else
+    render @user
+  end
+end
+
+
+
+  
+ 
+
+
+  
+  
 
   # GET /products/1
   # GET /products/1.json
   def show
+    @reviews = Review.where(product_id: @product.id).order("created_at DESC")
+      if @reviews.blank?
+      @avg_review = 0
+    else
+      @avg_review = @reviews.average(:rating).round(2)
+    end
   end
 
   # GET /products/new
   def new
-    @product = Product.new
+    @product = current_user.products.build
   end
 
   # GET /products/1/edit
@@ -24,7 +63,7 @@ class ProductsController < ApplicationController
   # POST /products
   # POST /products.json
   def create
-    @product = Product.new(product_params)
+    @product = current_user.products.build(product_params)
 
     respond_to do |format|
       if @product.save
@@ -69,6 +108,9 @@ class ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:name, :price, :brand, :category, :quantity, :image)
+      params.require(:product).permit(:name, :category, :brand, :price, :quantity, :image, :discount)
     end
+
+    
 end
+

@@ -1,0 +1,47 @@
+<div class="columns">
+  <div class="column is-8 is-centered">
+    <%= simple_form_for @search, html: { multipart: true } do |f| %>
+      
+         
+          <div class="field column is-9">
+            <div class="control">
+              <%= f.input :keywords , required: true, input_html: { class: "input"}, wrapper: false, label_html: { class:"label" } %>
+            </div>
+          </div>
+        
+
+          <div class="field column is-9">
+            <div class="control">
+              <%= f.input :brand , required: true, input_html: { class: "input"}, wrapper: false, label_html: { class:"label" } %>
+            </div>
+          </div>
+
+          <div class="field column is-9">
+            <div class="control">
+              <%= f.input :category , required: true, input_html: { class: "input"}, wrapper: false, label_html: { class:"label" } %>
+            </div>
+          </div>
+
+          <div class="field column is-9">
+            <div class="control">
+              <%= f.input :price , required: true, input_html: { class: "input"}, wrapper: false, label_html: { class:"label" } %>
+            </div>
+          </div>
+
+          <div class="field column is-9">
+            <div class="control">
+              <%= f.input :rate , required: true, input_html: { class: "input"}, wrapper: false, label_html: { class:"label" } %>
+            </div>
+          </div>
+        </div>
+        
+        <div class="field is-grouped">
+          <div class="control">
+            <%= f.button :submit,"Search", class: 'button is-warning'%>
+            <%= link_to 'Cancel', products_path, class:'button is-light' %>
+          </div>
+        </div>
+        
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+
+
+
+<% content_for :header do %>
+<section class="hero is-warning">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        Search Result 
+      </h1>
+       <%= link_to "Custom Search", new_search_path, class: "navbar-item button is-warning" %> 
+      
+    </div>
+   </div>
+</section>
+<% end %>
+ 
+<div class="product-index-grid pt4">
+  <% @results.each do |result| %>
+    <div class="product border-light">
+      <div class="product-thumb">
+        <%= result.name %>
+        <%= link_to image_tag(result.image_url(:thumb)), result %>
+      </div>
+      <div class="pa3">
+          <h3 class="fw7 f4 title"><%= link_to result.name, result %></h3>     
+          <p class="has-text-gray fg pt1">Brand name: <%= result.brand %></p>
+          <p class="has-text-gray fg pt1">Quantity In Stock: <%= result.quantity %></p>
+          <p class="has-text-gray fg pt1">Discount: <%= result.discount %></p>
+          <p class="f3 fw6 has-text-right pt2 price">Rs:<%= result.price %></p>
+      </div>
+     <% end %>  
+</div>
+
+
+    

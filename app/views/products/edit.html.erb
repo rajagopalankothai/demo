@@ -1,6 +1,33 @@
-<h1>Editing Product</h1>
+<!--<h1>Editing Product</h1>
 
 <%= render 'form', product: @product %>
 
 <%= link_to 'Show', @product %> |
+<%= link_to 'Back', products_path %>-->
+
+
+<% content_for :header do %>
+<section class="hero is-warning">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+      	<% if user_signed_in? %>
+            <% case current_user.role %>  
+              <% when "seller" %>
+        		Editing Product
+        		<% when "buyer" %>
+        		Rate the Product
+            <% end %>
+            <% end %>
+      </h1>
+    </div>
+  </div>
+</section>
+<% end %>
+
+<div class="pv4">
+  <%= render 'form', product: @product %>
+
+ <%= link_to 'Show', @product %> |
 <%= link_to 'Back', products_path %>
+</div>

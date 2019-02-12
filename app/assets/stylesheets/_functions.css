@@ -1,0 +1,38 @@
+
+/* Color */
+.bg-gray { background-color: #f1f1f1; }
+
+/* Font Size */
+.f1 { font-size: 3rem; }
+.f2 { font-size: 2.25rem; }
+.f3 { font-size: 1.5rem; }
+.f4 { font-size: 1.25rem; }
+.f5 { font-size: 1rem; }
+.f6 { font-size: .875rem; }
+.f7 { font-size: .75rem; } /* Small and hard to read for many people so use with extreme caution */
+
+/* Font Weight */
+.fw4 { font-weight: 400; }
+.fw5 { font-weight: 500; }
+.fw6 { font-weight: 600; }
+.fw7 { font-weight: 600; }
+
+/* Border */
+.border-light { border: 1px solid #dddddd; }
+.border { border: 1px solid #dedede; }
+.border-bottom { border-bottom: 1px solid #dddddd; }
+.border-top { border-top: 1px solid #dddddd; }
+.border-right { border-right: 1px solid #dddddd; }
+
+.border-radius-3 { border-radius: 3px; }
+
+.justify-center { justify-content: center; }
+.align-items-center { align-items: center; }
+
+/* Display */
+.inline-block { display: inline-block; }
+.block { display: block; }
+
+/* Background */
+.bg-white { background-color: white; }
+.bg-light { background-color: #F1F1F1; }

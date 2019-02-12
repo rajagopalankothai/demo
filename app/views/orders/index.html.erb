@@ -1,0 +1,32 @@
+  <table>
+    <thead> Order Details: </thead>
+
+    <tr>
+      <td> Name: <%= current_user.name %></td>
+    </tr>
+    <tr>
+       <td>Email: <%= current_user.email %></td>
+    </tr>
+     </tr>
+    <tr>
+      <td>===================================================</td>
+    </tr>
+    <tr>
+      <td>Product Details:</td>
+    </tr>
+    <tr>
+      <td>===================================================</td>
+    </tr>
+
+</table>
+<table>
+  <tr>
+   <%  @orders.each do |order| %>
+   <% order.line_items.each do |item| %>
+   <td>Quantity: <%= item.quantity %></td>
+   <td>Product Name: <%= item.product.name %></td>
+   <td>Product Price: <%= item.product.price %></td>
+
+ </tr>
+   <% end %><% end %><p>=================================================</p>
+</table

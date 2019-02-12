@@ -1,0 +1,31 @@
+
+
+
+<%= form_for(@order) do |f| %>
+  <p>
+    <%= f.label :Address %><br>
+    <%= f.text_field :address %>
+  </p>
+  <p>
+    <%= f.label :Payment_Type %><br>
+    <%= f.text_field :pay_method %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+
+<% end %>
+<% @cart.line_items.each do |item| %>
+
+
+
+
+    
+
+
+  
+
+  
+
+
+  

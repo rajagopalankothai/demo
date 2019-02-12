@@ -1,0 +1,11 @@
+<table>
+    <% @users.each do |user| %>
+      <tr>
+        <td>Name : <%= user.name %>
+        <td>Email : <%= user.email %>
+
+        <td><%= link_to 'Approve' , products_await_path(user:user), method: :post %>
+       </tr>    
+    <% end %>
+ </table>
+

@@ -1,0 +1,77 @@
+<div class="section">
+  <div class="container">
+  <div class="columns is-centered">
+
+    <div class="column is-4">
+
+    <h2 class="title is-2">Sign Up</h2>
+
+    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= f.error_notification %>
+
+    <div class="field">
+      <div class="control">
+      <%= f.input :name, required: true, autofocus: true, input_html: { class:"input" }, wrapper: false, label_html: { class:"label" } %>
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="control">
+      <%= f.input :email, required: true, input_html: { class:"input" }, wrapper: false, label_html: { class:"label" } %>
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="control">
+        <%= f.input :password, required: true, input_html: { class:"input" }, wrapper: false, label_html: { class:"label" }, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="control">
+        <%= f.input :password_confirmation, required: true, input_html: { class: "input" }, wrapper: false, label_html: { class: "label" } %>
+      </div>
+    </div>
+
+    
+    
+
+
+      <div class="field column is-4">
+            <div class="control">
+              <label class="label">Sign Up As </label>
+              <div class="control has-icons-left">
+                <span class="select">
+                  <%#= f.input_field :role, collection: User::ROLE, prompt: "Select" %>
+                  <%#= f.association :role, as: :radio_buttons %>
+                  <%= f.select :role, collection: User.roles.keys.to_a %>
+                </span>
+                <span class="icon is-small is-left">
+                  <i class="fa fa-paint-brush"></i>
+                </span>
+              </div>
+            </div>
+      </div>
+
+       <div class="field">
+      <div class="control">
+        <%= f.check_box :approved  %>
+      </div>
+    </div>
+
+
+         
+    <div class="field">
+      <div class="control">
+        <%= f.button :submit, "Sign up", class:"button is-warning is-medium" %>
+      </div>
+    </div>
+  
+
+    <% end %>
+      <br />
+      <%= render "devise/shared/links" %>
+    </div>
+    </div>
+  </div>
+</div>

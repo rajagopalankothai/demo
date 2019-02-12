@@ -1,18 +1,146 @@
+<div class="columns">
+  <div class="column is-8 is-centered">
+    <%= simple_form_for @product, html: { multipart: true } do |f| %>
+      <%= f.error_notification %>
+       <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %> 
+        <div class="columns">  
+          <% if user_signed_in? %>
+            <% case current_user.role %>  
+              <% when "seller" %>
+                <div class="field column is-9">
+                  <div class="control">
+                    <%= f.input :name , required: true, input_html: { class: "input"}, wrapper: false, label_html: { class:"label" } %>
+                  </div>
+                </div>
 
-<%= simple_form_for(@product) do |f| %>
-  <%= f.error_notification %>
-  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+                <div class="field column">
+                  <div class="control">
+                    <%= f.input :category, required: true, input_html: { class:"input"}, wrapper: false, label_html: { class:"label" } %>
+                  </div>
+                </div>
+        </div>
+        
+                <div class="field">
+                  <div class="control">
+                    <%= f.input :brand, required: true, input_html: { class:"input" }, wrapper: false, label_html: { class:"label" } %>
+                  </div>
+                </div>
 
-  <div class="form-inputs">
-    <%= f.input :name %>
-    <%= f.input :price %>
-    <%= f.input :brand %>
-    <%= f.input :category %>
-    <%= f.input :quantity %>
-    <%= f.input :image %>
+                <div class="field">
+                  <div class="control">
+                    <%= f.input :price, required: true, input_html: { class:"input" }, wrapper: false, label_html: { class:"label" } %>
+                  </div>
+                </div>
+
+                <div class="field">
+                  <div class="control">
+                    <%= f.input :quantity, required: true, input_html: { class:"input" }, wrapper: false, label_html: { class:"label" } %>
+                  </div>
+                </div>
+
+                <div class="field">
+                  <div class="control">
+                    <%= f.input :discount, required: true, input_html: { class:"input" }, wrapper: false, label_html: { class:"label" } %>
+                  </div>
+                </div>
+       
+                <div class="field">
+                  <div class="control">
+                    <label class="label">Add image</label>
+                      <div class="file">
+                        <label class="file-label">
+                          <%= f.input :image, as: :file, input_html: { class:"file-input product-image" }, label: false, wrapper: false %>
+                            <span class="file-cta">
+                              <span class="file-icon"><i class="fa fa-upload"></i></span>
+                              <span class="file-label">Choose a file…</span>
+                            </span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <output id="list"></output>
+               <hr />  
+               <% when "admin" %>
+                <div class="field column is-9">
+                  <div class="control">
+                    <%= f.input :name , required: true, input_html: { class: "input"}, wrapper: false, label_html: { class:"label" } %>
+                  </div>
+                </div>
+
+                <div class="field column">
+                  <div class="control">
+                    <%= f.input :category, required: true, input_html: { class:"input"}, wrapper: false, label_html: { class:"label" } %>
+                  </div>
+                </div>
+        </div>
+        
+                <div class="field">
+                  <div class="control">
+                    <%= f.input :brand, required: true, input_html: { class:"input" }, wrapper: false, label_html: { class:"label" } %>
+                  </div>
+                </div>
+
+                <div class="field">
+                  <div class="control">
+                    <%= f.input :price, required: true, input_html: { class:"input" }, wrapper: false, label_html: { class:"label" } %>
+                  </div>
+                </div>
+
+                <div class="field">
+                  <div class="control">
+                    <%= f.input :quantity, required: true, input_html: { class:"input" }, wrapper: false, label_html: { class:"label" } %>
+                  </div>
+                </div>
+
+                <div class="field">
+                  <div class="control">
+                    <%= f.input :discount, required: true, input_html: { class:"input" }, wrapper: false, label_html: { class:"label" } %>
+                  </div>
+                </div>
+       
+                <div class="field">
+                  <div class="control">
+                    <label class="label">Add image</label>
+                      <div class="file">
+                        <label class="file-label">
+                          <%= f.input :image, as: :file, input_html: { class:"file-input product-image" }, label: false, wrapper: false %>
+                            <span class="file-cta">
+                              <span class="file-icon"><i class="fa fa-upload"></i></span>
+                              <span class="file-label">Choose a file…</span>
+                            </span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <output id="list"></output>
+               <hr />  
+
+            
+              <% when "buyer" %>
+                <div class="columns">
+                  <div class="field column">
+                    <div class="control">
+                      <%= f.input :rate, required: true, input_html: { class:"input" }, wrapper: false, label_html: { class:"label" } %>
+                    </div>
+                  </div>
+
+                  <div class="field column">
+                    <div class="control">
+                      <%= f.input :review, required: true, input_html: { class:"input" }, wrapper: false, label_html: { class:"label" } %>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          
+            
+        <div class="field is-grouped">
+          <div class="control">
+            <%= f.button :submit, class: 'button is-warning' %>
+            <%= link_to 'Cancel', products_path, class:'button is-light' %>
+          </div>
+        </div>
+
+      <% end %>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
-<% end %>
+</div>

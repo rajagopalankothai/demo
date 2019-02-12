@@ -1,34 +1,120 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @product.name %>
-</p>
 
-<p>
-  <strong>Price:</strong>
-  <%= @product.price %>
-</p>
+<% content_for :body_class, 'bg-light' %>
 
-<p>
-  <strong>Brand:</strong>
-  <%= @product.brand %>
-</p>
+<section class="section product-show">
+  <div class="columns">
+    <div class="column is-8">
+      <h1 class="title is-2"><%= @product.name %></h1>
+        
+        <div class="feature-image">
+          <%= image_tag(@product.image_url(:default)) %>
+        </div>
 
-<p>
-  <strong>Category:</strong>
-  <%= @product.category %>
-</p>
+        <div class="content pa2 mt2 bg-white border-radius-4">
+         <h3 class="subtitle is-7 pt3">Product Details</h3>
+          <table class="table is-narrow">
+        
+            <% if @product.brand %>
+              <tr>
+                <td class="has-text-weight-bold">Brand Name:</td>
+                <td><%= @product.brand %></td>
+              </tr>
+            <% end %>
 
-<p>
-  <strong>Quantity:</strong>
-  <%= @product.quantity %>
-</p>
+            <% if @product.category %>
+              <tr>
+                <td class="has-text-weight-bold">Category:</td>
+                <td><%= @product.category %></td>
+              </tr>
+            <% end %>
+        
+           <% if @product.quantity %>
+            <tr>
+              <td class="has-text-weight-bold">Quantity In Stock:</td>
+              <td><%= @product.quantity %></td>
+            </tr>
+            <% end %>
 
-<p>
-  <strong>Image:</strong>
-  <%= @product.image %>
-</p>
+            <% if @product.discount %>
+              <tr>
+                <td class="has-text-weight-bold">Discount Amount:</td>
+                <td><%= @product.discount %></td>
+              </tr>
+            <% end %> 
 
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
+          </table>
+
+          <% if user_signed_in? %>
+            <% case current_user.role %>  
+              <% when "buyer" %>
+                <%= link_to "Write a Review", new_product_review_path(@product) %>
+              <% end %>
+          <% end %>
+         <div class="reviews" >
+          
+      </div>
+          <em><%= "#{@reviews.length} reviews" %></em>
+            
+         
+      
+     
+      </div>
+    </div>  
+      <div class="column is-3 is-offset-1">
+        <div class="bg-white pa4 border-radius-3">
+          <h4 class="title is-5 has-text-centered">Rs:<%= @product.price %></h4>
+            <p class="has-text-centered mb4">Seller's Name: <%= @product.user.name %></p>
+              <%= button_to 'Add to cart', line_items_path(product_id: @product), class: 'button is-warning add-to-cart' %>
+        </div>
+        
+       
+          
+           <% @reviews.each do |review| %>
+         <table class="table is-narrow">
+            <tr>
+
+                <td><%= review.user.name %></td>
+              </tr>
+            <tr>
+
+
+              </tr>
+
+              <tr>
+                <td><%= review.rating %> </td>
+                <td><%= review.comment %></td></div>
+              </tr>
+            </table>
+           <%# if review_author(review) %>       
+          <%#= link_to 'Edit', edit_review_path(review), class: "button is-small" %>
+          <%#= link_to 'Delete', review, method: :delete, data: { confirm: "Are you sure ?" }, class: "button is-small" %>
+        <%# end %>
+        
+
+            <% end %>
+
+
+         
+          
+
+              
+   
+ 
+
+     
+
+
+
+
+
+
+    
+      
+      
+  
+
+
+    
+  </div>
+</section>

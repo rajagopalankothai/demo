@@ -1,0 +1,101 @@
+<div class="section">
+  <div class="columns is-centered">
+    <div class="column is-6 border pa5">
+
+      <%= yield(:header) %>
+      <div class="container">
+        <%= yield %>
+      </div> 
+
+  </body>
+  </html>
+  
+
+  <section class="section">
+  <div class="has-text-centered box">
+    <h1 class="title">Subscription Plans</h1>
+    <h2 class="subtitle">Choose the best plan that matches your budget.</h2>
+    <div class="pricing-table">
+
+        <div class="pricing-plan is-warning">
+        <div class="plan-header">Start </div>
+        <div class="plan-price"><span class="plan-price-amount"><span class="plan-price-currency">Rs: </span>500</span>/month</div>
+         <div class="plan-header">Validity: 3 Months </div>
+        
+        
+        <div class="plan-footer">
+          
+            <%= link_to 'Subscribe', new_subscription_path(plan: "start", plan_id: Rails.application.credentials.start), class:"button is-fullwidth" %>
+         
+        </div>
+      </div>
+
+
+
+
+      <div class="pricing-plan is-warning">
+        <div class="plan-header">Starter </div>
+        <div class="plan-price"><span class="plan-price-amount"><span class="plan-price-currency">Rs: </span>450</span>/month</div>
+         <div class="plan-header">Validity: 6 Months </div>
+        <div class="plan-footer">
+          
+            <%= link_to 'Subscribe', new_subscription_path(plan: "starter", plan_id: Rails.application.credentials.starter), class:"button is-fullwidth" %>
+         
+        </div>
+      </div>
+
+      <div class="pricing-plan is-link is-active">
+        <div class="plan-header">Regular </div>
+        <div class="plan-price"><span class="plan-price-amount"><span class="plan-price-currency">Rs: </span>400</span>/month</div>
+        <div class="plan-header">Validity: 9 Months </div>
+        <div class="plan-footer">
+          
+            <%= link_to 'Subscribe', new_subscription_path(plan: "regular", plan_id: Rails.application.credentials.regular), class:"button is-fullwidth" %>
+          
+        </div>
+      </div>
+      <div class="pricing-plan is-danger">
+        <div class="plan-header">Rigorous </div>
+        <div class="plan-price"><span class="plan-price-amount"><span class="plan-price-currency">Rs: </span>350</span>/month</div>
+         <div class="plan-header">Validity: 12 Months </div>
+        <div class="plan-footer">
+         
+            <%= link_to 'Subscribe', new_subscription_path(plan: "rigorous", plan_id: Rails.application.credentials.rigorous), class:"button is-fullwidth" %>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+      <h1 class="title is-3">Subscribe</h1>
+      <hr />
+      <p>Chosen plan: <strong><%= params[:plan] %>
+      <hr/>
+      <%= form_tag subscriptions_path, id: "payment-form" do |form| %>
+
+        <div class="field">
+          <label for="card-element" class="label">Enter credit or debit card</label>
+
+          <div id="card-element">
+            <!-- A Stripe element will be intserted here !-->
+          </div>
+
+          <div id="card-errors" role="alert"></div>
+
+          <%= hidden_field_tag :plan_id, params[:plan_id] %>
+
+          <button class="button is-fullwidth is-link mt4">Submit</button>
+        </div>
+
+      <% end %>
+    </div>
+  </div>
+</div>
