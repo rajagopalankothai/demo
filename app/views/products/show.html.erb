@@ -8,7 +8,7 @@
       <h1 class="title is-2"><%= @product.name %></h1>
         
         <div class="feature-image">
-          <%= image_tag(@product.image_url(:default)) %>
+          <%= image_tag(@product.image_url(:thumb)) %>
         </div>
 
         <div class="content pa2 mt2 bg-white border-radius-4">
@@ -51,10 +51,10 @@
                 <%= link_to "Write a Review", new_product_review_path(@product) %>
               <% end %>
           <% end %>
-         <div class="reviews" >
+
           
-      </div>
-          <em><%= "#{@reviews.length} reviews" %></em>
+          <p>Average-Rating:<%= @avg_review %></p>
+          <%= "#{@reviews.length} reviews" %>
             
          
       
@@ -82,8 +82,9 @@
               </tr>
 
               <tr>
-                <td><%= review.rating %> </td>
-                <td><%= review.comment %></td></div>
+                <div class="reviews">
+                <td><%= review.rating %> </div> </td>
+                <td><%= review.comment %></td></div></div>
               </tr>
             </table>
            <%# if review_author(review) %>       
@@ -93,28 +94,15 @@
         
 
             <% end %>
-
-
-         
-          
-
-              
-   
- 
-
-     
-
-
-
-
-
-
-    
-      
-      
-  
-
-
-    
-  </div>
+            
+</div>
 </section>
+<script>
+      $('.star-rating').raty({
+        path: '/assets/',
+        readOnly: true,
+        score: function() {
+              return $(this).attr('data-score');
+      }
+    });
+  </script>
