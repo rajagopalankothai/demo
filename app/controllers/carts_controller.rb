@@ -3,8 +3,13 @@ class CartsController < ApplicationController
   before_action :set_cart, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
 
- 
 
+ 
+   def order
+@cart = Cart.find(session[:cart_id])
+@order = @cart.line_items
+redirect_to order_page_path
+  end
   # GET /carts
   # GET /carts.json
   def index
@@ -13,9 +18,7 @@ class CartsController < ApplicationController
 
   # GET /carts/1
   # GET /carts/1.json
-  def show
-
-  end
+ 
 
 
   # GET /carts/new
@@ -92,6 +95,11 @@ end
       redirect_to root_path, notice: "The Cart doesn't exists"
     end
 
+    def product_present
+      if product.nil?
+        errors.add(:product, "is not valid or is not active.")
+      end
+    end
   
 
     

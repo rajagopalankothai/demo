@@ -7,6 +7,7 @@ class User < ApplicationRecord
   enum role: { buyer: 0, seller: 1,  admin: 2 } 
   has_many :products, dependent: :destroy
   has_many :reviews, dependent: :destroy
+  has_many :orders
   
 
   def subscribed?

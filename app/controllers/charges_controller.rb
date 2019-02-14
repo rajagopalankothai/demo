@@ -1,7 +1,9 @@
 class ChargesController < ApplicationController
-
+after_action :destroy_cart
 def new
 end
+
+
 
 def create
   # Amount in cents
@@ -23,6 +25,12 @@ rescue Stripe::CardError => e
   flash[:error] = e.message
   redirect_to root_path
 end
+
+
+def destroy_cart
+    Cart.destroy(session[:cart_id])
+    session[:cart_id] = nil
+  end
 
 
 end

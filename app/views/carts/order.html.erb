@@ -1,0 +1,14 @@
+	<tr>
+		<td>Name:</td><td> <%= current_user.name %></td>
+	<tr>
+	<tr>
+		<td> Email:</td><td><%= current_user.email %></td>
+	</tr>
+</table>
+<br>
+<table>
+	<tr>Order Details:</tr>
+	<tr><td>Name:</td><td>Quantity:</td><td>Total price:</td></tr></table>
+	<% @order.each_pair do |name, quantity, total_price| %>
+	<%= name %>
+	<% end %>

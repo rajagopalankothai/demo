@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   get '/search' => 'products#search', :as => 'search_page'
   get '/approve' => 'products#approve', :as => 'approve_page'
   post '/products/await', to: 'products#await'
+  get '/carts/order', to: 'carts#order'
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
